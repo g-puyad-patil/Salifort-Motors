@@ -60,8 +60,8 @@ The chart below visualizes the factors that contributed most to the model's pred
 
 The **Top 3 most important factors** were:
 1.  **`last_evaluation`** (performance review score)
-2.  **`tenure`** (time spent at the company)
-3.  **`number_project`**
+2.  **`number_project`**
+3.  **`tenure`** (time spent at the company)
 
 ### Performance Metrics
 
