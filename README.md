@@ -1,92 +1,89 @@
-# Employee Turnover Prediction for Salifort Motors HR 📊
+# 🧑‍💼 Employee Retention Prediction at Salifort Motors: Capstone Project
 
-## Project Overview
+---
 
-This project was conducted for Salifort Motors to analyze employee data and develop a predictive model to forecast employee turnover. The goal was to provide the Human Resources and Senior Leadership teams with data-driven insights to mitigate the high costs and operational disruptions associated with staff departures.
+## 🎯 Overview
 
-Using employee survey data, a **Decision Tree** classification model was built to predict the binary outcome of whether an employee will leave the company. The final model achieved an accuracy of **96.2%**, successfully highlighting key variables like `satisfaction_level` and `average_monthly_hours` as primary drivers of turnover.
+The goal of this project was to create a machine learning model, specifically a **Random Forest Classifier**, to **predict whether an employee would leave Salifort Motors** (`left` vs. `stay`). This project utilized a dataset containing self-reported employee information gathered from a recent survey.
 
-***
+The final Random Forest model achieved approximately **98% accuracy** and a high **Recall of 93%** for predicting employee departure, successfully identifying the factors most important in separating employees who stay from those who leave.
 
-## Business Understanding
+Based on the model, **last evaluation score**, **tenure (time spent at the company)**, and **number of projects** were the most influential features in determining an employee’s likelihood of leaving the company.
 
-The primary stakeholder is the **Salifort Motors Senior Leadership Team**. The company is facing a high rate of employee turnover, which is financially costly due to the required investment in recruitment, training, and onboarding new staff.
+---
 
-The business problem is to **increase employee retention**. By predicting which employees are at the highest risk of leaving and identifying the underlying reasons, the HR department can intervene proactively with targeted retention strategies, ultimately saving the company time and money while fostering a better work environment.
+## 🏢 Business Understanding
 
-***
+Salifort Motors is experiencing a **high rate of employee turnover**, which is financially costly and undermines corporate culture goals.
 
-## Data Understanding
+The objective was to understand **what factors encourage employees to leave** in order to develop targeted, data-driven HR strategies to **increase long-term employee retention**. A strong predictive model allows the company to shift from reactive measures to proactive intervention.
 
-The analysis utilized the `HR_capstone_dataset.csv` provided by Salifort Motors' Human Resources department.
+---
 
-* **Size:** 14,999 rows (employee records) and 10 columns.
-* **Target Variable:** `left` (1 = employee left, 0 = employee stayed).
-* **Key Features:** `satisfaction_level`, `last_evaluation`, `number_project`, `average_monthly_hours`, `time_spend_company`, `department`, and `salary`.
-* **Exploratory Data Analysis (EDA) Insights:**
-    * A significant portion of employees who left the company reported both **low satisfaction levels** and **very high average monthly hours**.
-    * Employees who left often fell into distinct clusters related to their **number of projects** (e.g., those with very few projects *and* those with too many).
-* **File:** `HR_capstone_dataset.csv`
+## 📊 Data Understanding
 
-***
-
-## Modeling and Evaluation
-
-### Approach
-This is a **binary classification problem**. I chose to build and evaluate a **[Model Type]** model. The data was preprocessed using techniques such as feature encoding for categorical variables (`department`, `salary`) and splitting the data into training and test sets.
-
-### Model Performance
-The final model was evaluated on the test set using standard classification metrics:
-
-| Metric | Result | Interpretation |
+| Column Name | Type | Description |
 | :--- | :--- | :--- |
-| **Accuracy** | `96.2%` | Overall correctness of the model's predictions. |
-| **Precision** | `87.0 %` | Out of all predicted departures, how many were actually correct (important for minimizing false alarms). |
-| **Recall** | `90.4 %` | Out of all actual departures, how many did the model correctly identify (important for capturing at-risk employees). |
-| **F1 Score** | `88.7%` | The harmonic mean of Precision and Recall. |
+| `satisfaction_level` | int64 | The employee’s self-reported satisfaction level [0-1] |
+| `last_evaluation` | int64 | Score of employee's last performance review [0–1] |
+| `number_project` | int64 | Number of projects employee contributes to |
+| `average_monthly_hours` | int64 | Average number of hours employee worked per month |
+| `time_spend_company` (renamed to `tenure`) | int64 | How long the employee has been with the company (years) |
+| `work_accident` | int64 | Whether or not the employee experienced an accident while at work |
+| `left` (Target Variable) | int64 | Whether or not the employee left the company |
+| `promotion_last_5years` | int64 | Whether or not the employee was promoted in the last 5 years |
+| `department` | str | The employee's department |
+| `salary` | str | The employee's salary (low, medium, or high) |
 
-### Feature Importance (for Tree-Based Models)
-The following features were found to be the most influential in predicting employee departure:
+* **Source**: Internal HR survey data (`HR_capstone_dataset.csv`).
+* **Size**: ~15,000 unique employee records.
+* **Data Preparation**:
+    * Categorical features (`department`, `salary`) were one-hot encoded.
+    * A new feature, **`overworked`** (employees working >200 hours/month), was engineered.
+    * Duplicates were identified and removed.
 
-1.  **`satisfaction_level`**
-2.  **`time_spend_company`**
-3.  **`average_monthly_hours`**
+---
+
+## 💻 Modeling and Evaluation
+
+### Model Used: Random Forest Classifier
+
+A Random Forest Classifier with 100 decision trees was selected for its ability to handle feature non-linearity, robustness to outliers, and its excellent feature importance reporting capabilities.
+
+### Feature Importance
+
+The chart below visualizes the factors that contributed most to the model's predictive power:
 
 
+*(Placeholder for your generated image, e.g., `feature_importance.png`)*
 
-***
+The **Top 3 most important factors** were:
+1.  **`last_evaluation`** (performance review score)
+2.  **`tenure`** (time spent at the company)
+3.  **`number_project`**
 
-## Conclusion and Recommendations
+### Performance Metrics
 
-The predictive model successfully identifies employees at high risk of turnover, providing a valuable tool for HR intervention.
+| Metric | Score | Description |
+| :--- | :--- | :--- |
+| **Accuracy** | ~98% | Overall correctness of predictions. |
+| **Precision** (for `left=1`) | ~96% | Of all predicted leavers, how many actually left. |
+| **Recall** (for `left=1`) | **~93%** | Of all employees who *actually left*, how many were correctly identified. (Crucial for an HR intervention model). |
 
-### Key Insights
-* **Satisfaction is Critical:** Low satisfaction is the single strongest predictor of departure.
-* **Workload Management:** Employees with **[Your Key Finding, e.g., 6 or 7 projects]** or those logging extremely high hours show a significantly increased likelihood of leaving.
+---
 
-### Recommendations
-1.  **Targeted Retention Programs:** Implement an alert system based on the model's high-risk predictions to identify and intervene with employees before they decide to leave.
-2.  **Workload Management:** Audit and re-distribute workloads in departments with high average monthly hours (e.g., **[Department Name]**) to prevent burnout.
-3.  **Satisfaction Survey Follow-Up:** Conduct detailed follow-up interviews with employees in the low satisfaction/high hours group to understand their specific pain points.
+## 💡 Conclusion and Recommendations
 
-***
+The model successfully identifies employees at high risk of departure and pinpoints the key underlying issues.
 
-## Future Steps
+### Actionable Recommendations for HR:
 
-* **Clustering:** Apply an **unsupervised learning method (e.g., K-means)** to the data to identify natural, actionable groupings (clusters) of employees based on their work habits and reported scores.
-* **Causal Inference:** Explore more complex models to determine the direct causal effect of specific interventions (like raising salary or reducing projects) on the probability of retention.
-* **Model Deployment:** Explore deploying the model to a production environment where it can intake new employee data in real-time.
+1.  **Cap Project Workload**: Since a high **`number_project`** is a major driver of turnover, consider implementing a policy to **cap the number of projects** an employee can work on simultaneously to prevent burnout and maintain focus.
+2.  **Target 4-5 Year Tenure Group**: Investigate and address the high turnover observed among employees with **four to five years of tenure**. This could involve targeted **promotion cycles**, retention bonuses, or dedicated career development planning before this critical period.
+3.  **Review Evaluation-Hours Correlation**: Since **`last_evaluation`** and **`overworked`** are both highly influential, the company must ensure that high evaluation scores are not solely reserved for employees who work excessive hours. Evaluation criteria should reflect quality and efficiency, not just time spent.
+4.  **Acknowledge and Reward High Hours**: If long hours are necessary, implement clear compensation or recognition programs to mitigate the negative impact of being **`overworked`**.
 
-***
+### Future Work
 
-### Technologies and Files Used
-
-| File/Tool | Purpose |
-| :--- | :--- |
-| **Python** | Primary programming language |
-| **Pandas, NumPy** | Data manipulation and numerical operations |
-| **Scikit-learn** | Model building, training, and evaluation |
-| **XGBoost, Statsmodels** | Advanced statistical and machine learning modeling |
-| **Matplotlib, Seaborn** | Exploratory Data Analysis and visualization |
-| `[Your Notebook Name].ipynb` | Full project code for EDA, modeling, and evaluation |
-| `Executive_Summary.pdf` | One-page summary of findings for non-technical stakeholders |
+* **Clustering**: Apply a K-means clustering model to segment employees based on their feature values (e.g., satisfaction, evaluation, hours) to define specific "at-risk" profiles (e.g., "Burnout Risk," "Low-Satisfaction/Low-Effort").
+* **Predicting Satisfaction**: Build a separate regression model to predict an employee's **`satisfaction_level`** based on other inputs, providing insight into which variables can be manipulated to boost satisfaction *before* turnover occurs.
