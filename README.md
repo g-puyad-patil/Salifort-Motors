@@ -43,7 +43,7 @@ The final model was evaluated on the test set using standard classification metr
 | **Accuracy** | `96.2%` | Overall correctness of the model's predictions. |
 | **Precision** | `87.0 %` | Out of all predicted departures, how many were actually correct (important for minimizing false alarms). |
 | **Recall** | `90.4 %` | Out of all actual departures, how many did the model correctly identify (important for capturing at-risk employees). |
-| **F1 Score** | `[88.7%]` | The harmonic mean of Precision and Recall. |
+| **F1 Score** | `88.7%` | The harmonic mean of Precision and Recall. |
 
 ### Feature Importance (for Tree-Based Models)
 The following features were found to be the most influential in predicting employee departure:
