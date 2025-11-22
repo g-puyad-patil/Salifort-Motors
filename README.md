@@ -4,7 +4,7 @@
 
 This project was conducted for Salifort Motors to analyze employee data and develop a predictive model to forecast employee turnover. The goal was to provide the Human Resources and Senior Leadership teams with data-driven insights to mitigate the high costs and operational disruptions associated with staff departures.
 
-Using employee survey data, a **[Your Chosen Model, e.g., Random Forest or Logistic Regression]** classification model was built to predict the binary outcome of whether an employee will leave the company. The final model achieved an accuracy of **[Your Accuracy]%**, successfully highlighting key variables like `satisfaction_level` and `average_monthly_hours` as primary drivers of turnover.
+Using employee survey data, a **[Decision Tree]** classification model was built to predict the binary outcome of whether an employee will leave the company. The final model achieved an accuracy of **[Your Accuracy]%**, successfully highlighting key variables like `satisfaction_level` and `average_monthly_hours` as primary drivers of turnover.
 
 ***
 
