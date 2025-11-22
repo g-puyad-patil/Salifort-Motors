@@ -55,7 +55,8 @@ A Random Forest Classifier with 100 decision trees was selected for its ability 
 The chart below visualizes the factors that contributed most to the model's predictive power:
 
 
-*(Placeholder for your generated image, e.g., `feature_importance.png`)*
+*(<img width="491" height="278" alt="image" src="https://github.com/user-attachments/assets/c2161f59-a5ad-4d95-99a4-c620e09333b1" />
+)*
 
 The **Top 3 most important factors** were:
 1.  **`last_evaluation`** (performance review score)
