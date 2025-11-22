@@ -1,4 +1,4 @@
-# 🧑‍💼 Employee Retention Prediction at Salifort Motors: Capstone Project
+# 🧑‍💼 Employee Retention Prediction at Salifort Motors
 
 ---
 
