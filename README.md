@@ -1,4 +1,4 @@
-# Employee Turnover Prediction using [Your Chosen Model, e.g., XGBoost] for Salifort Motors HR 📊
+# Employee Turnover Prediction for Salifort Motors HR 📊
 
 ## Project Overview
 
